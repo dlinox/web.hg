@@ -33,15 +33,33 @@
             <ECG class="-mt-4 z-0 relative" width="250px" />
           </div>
 
-          <div>
-            <p class="font-normal">
+          <div v-html="about_us">
 
-              El Hospital Goyeneche del Gobierno Regional de Arequipa, cumple un rol social contribuyendo a solucionar los problemas de salud de la población, dentro del ámbito que le corresponde, brindando una Atención Integral de Salud con calidad y eficiencia. Inaugurado solemnemente el 11 de febrero de 1912, tuvo como padrino al Papa Pío X, y bajo la advocación de la milagrosa imagen de Cristo Pobre, Patrón del Hospital, desde sus inicios ha sido y será considerado por su incondicional ayuda sanitaria a la población arequipeña y de toda la región sur del país. .
-            </p>
+            
+
+            
           </div>
         </div>
       </div>
     </div>
   </section>
 </template>
-<script setup></script>
+<script setup>
+
+import { ref } from 'vue';
+
+const items = ref([]);
+const about_us = ref(null);
+
+const init = async () => {
+  console.log('init')
+
+  let servicesRes  = await fetch('https://goyeneche.linox.net.pe/api/quienes-somos');
+  let servicesData = await servicesRes.json();
+  items.value = servicesData;
+  about_us.value = items.value.about_us;
+  console.log(items.value);
+}
+
+init();
+</script>

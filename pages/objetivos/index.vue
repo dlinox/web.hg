@@ -63,7 +63,7 @@
         class="grid grid-cols-1 gap-8 relative items-center w-full py-12 lg:py-32"
       >
         <div
-          v-for="(item, index) in 4"
+          v-for="(item, index) in items"
           class="shadow-md p-8 rounded-lg bg-white/10 backdrop-blur-sm rounded-br-[80px] z-10"
         >
           <div class="container mb-6">
@@ -71,19 +71,36 @@
               {{ index + 1 }}
             </span>
             <h3 class="text-2xl font-bold z-10 relative my-3">
-              Titulo del Objetivo
+              {{ item.name }}
             </h3>
           </div>
 
-          <div>
+          <!-- <div>
             <p class="font-light">
               El Hospital Goyeneche del Gobierno Regional de Arequipa, cumple un
               rol social contribuyendo a so
             </p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
   </section>
 </template>
-<script setup></script>
+
+<script setup>
+
+import { ref } from 'vue';
+
+const items = ref([]);
+
+const init = async () => {
+  console.log('init')
+
+  let servicesRes  = await fetch('https://goyeneche.linox.net.pe/api/objetivos');
+  let servicesData = await servicesRes.json();
+  items.value = servicesData;
+  console.log(items.value);
+}
+
+init();
+</script>

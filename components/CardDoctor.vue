@@ -1,19 +1,34 @@
 <template>
   <div class="container__cards">
-    <div v-for="(item, index) in items" :key="index" class="card transition-all duration-300 transform hover:scale-105">
+    <div
+      v-for="(item, index) in items"
+      :key="index"
+      class="card transition-all duration-300 transform hover:scale-105"
+    >
       <div class="cover">
-        <img src="file:///C:/Users/linox/Downloads/goyeneche/images/p1.png" alt="" class="w-48 mx-auto relative top-10 z-10 filter drop-shadow-md transition-all duration-400 transform hover:top-0 hover:filter-none" />
-        <div class="img__back bg-cover w-full h-48 absolute bottom-0 left-0 border-b-8 border-white rounded-b-lg transition-all duration-300 hover:bottom-8"></div>
+        <img
+          :src="item.photo_url"
+          alt=""
+          class="w-48 mx-auto relative top-10 z-10 filter drop-shadow-md transition-all duration-400 transform hover:top-0 hover:filter-none"
+        />
+        <div
+          class="img__back bg-cover w-full h-48 absolute bottom-0 left-0 border-b-8 border-white rounded-b-lg transition-all duration-300 hover:bottom-8"
+        ></div>
       </div>
-      <div class="description bg-white shadow-lg mt-10 p-5 rounded-b-lg transition-all duration-300 hover:py-10">
+      <div
+        class="description bg-white shadow-lg mt-10 p-5 rounded-b-lg transition-all duration-300 hover:py-10"
+      >
         <h2 class="mt-2 uppercase">
-{{ item.full_name }}
-
+          {{ item.full_name }}
         </h2>
-        <p>{{ item.specialty_name  }}</p>
-        <p>CMP: {{ item.registration_code}}</p>
+        <p>{{ item.specialty_name }}</p>
+        <p>CMP: {{ item.registration_code }}</p>
         <a href="#" @click="toggle" class="inline-block">
-          <button class="py-2 px-4 mt-4 bg-red-700 text-white text-sm rounded-md cursor-pointer transition-all duration-300 hover:bg-blue-700">Ver Detalles</button>
+          <button
+            class="py-2 px-4 mt-4 bg-red-700 text-white text-sm rounded-md cursor-pointer transition-all duration-300 hover:bg-blue-700"
+          >
+            Ver Detalles
+          </button>
         </a>
       </div>
     </div>
@@ -26,7 +41,6 @@ const props = defineProps({
     required: true,
   },
 });
-
 </script>
 
 <style>

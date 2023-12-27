@@ -26,6 +26,10 @@
       <div class="container">
         <div class="grid grid-cols-1 gap-20">
           <div
+
+          v-for="item in items"
+            :key="item.id"
+
           style="
            background-image: url('/assets/images/bg/bg1.jpg');
             background-size: cover;
@@ -39,7 +43,7 @@
               class="relative w-2/5 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0"
             >
               <img
-                src="/assets/images/medicals/p1.png"
+                :src="item.worker?.photo_url"
                 alt="card-image"
                 class="object-cover w-full h-full"
               />
@@ -48,17 +52,17 @@
               <h6
                 class=" mb-4 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-gray-700 uppercase"
               >
-                puesto
+                {{ item.position }}
               </h6>
               <h4
                 class=" mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900"
               >
-                Bombre de la persona
+                {{ item.worker?.full_name }}
               </h4>
               <p
                 class=" mb-8 font-sans text-base antialiased font-normal leading-relaxed text-gray-700"
               >
-                descripcion de la person descripcion de la person descripcion de
+                {{ item.worker?.description }}
               </p>
             
             </div>
@@ -68,4 +72,23 @@
     </div>
   </section>
 </template>
-<script setup></script>
+
+<script setup>
+
+import { ref } from 'vue';
+
+const items = ref([]);
+
+
+const init = async () => {
+  console.log('init')
+
+  let servicesRes  = await fetch('https://goyeneche.linox.net.pe/api/autoridades');
+  let servicesData = await servicesRes.json();
+  items.value = servicesData;
+
+  console.log(items.value);
+}
+
+init();
+</script>

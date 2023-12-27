@@ -57,10 +57,30 @@
     <div class="relative items-center w-full py-12 lg:py-32">
       <div class="container  ">
 
-        <img class="w-full rounded-lg shadow-lg" src="/assets/images/about_us/hg-img-2.jpeg" alt="">
+        <img class="w-full rounded-lg shadow-lg" :src="items?.organigram_url" alt="">
       </div>
 
     </div>
   </section>
 </template>
-<script setup></script>
+
+
+<script setup>
+
+import { ref } from 'vue';
+
+const items = ref(null);
+
+
+const init = async () => {
+  console.log('init')
+
+  let servicesRes  = await fetch('https://goyeneche.linox.net.pe/api/organigrama');
+  let servicesData = await servicesRes.json();
+  items.value = servicesData;
+
+  console.log(items.value);
+}
+
+init();
+</script>

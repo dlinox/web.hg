@@ -40,33 +40,45 @@
             <ECG class="-mt-4 z-0 relative" width="100px" />
           </div>
 
-          <div>
-            <p class="font-normal">
-              El Hospital Goyeneche del Gobierno Regional de Arequipa, cumple un
-              rol social contribuyendo a solucionar los problemas de salud de la
-              población, dentro del ámbito que le correspond arequipeña y de
-              toda la región sur del país.
-            </p>
+          <div v-html="mission">
           </div>
         </div>
 
         <div class="shadow-xl p-5 rounded-lg bg-white/60 backdrop-blur-3xl">
           <div class="container mb-6">
-            <h3 class="text-3xl font-bold z-10 relative">Misión</h3>
+            <h3 class="text-3xl font-bold z-10 relative">Visión</h3>
             <ECG class="-mt-4 z-0 relative" width="100px" />
           </div>
 
-          <div>
-            <p class="font-normal">
-              El Hospital Goyeneche del Gobierno Regional de Arequipa, cumple un
-              rol social contribuyendo a solucionar los problemas de salud de la
-              población, dentro del ámbito que le correspond arequipeña y de
-              toda la región sur del país.
-            </p>
+          <div v-html="vision">
+            
           </div>
         </div>
       </div>
     </div>
   </section>
 </template>
-<script setup></script>
+
+
+<script setup>
+
+import { ref } from 'vue';
+
+const items = ref([]);
+const mission = ref(null);
+const vision = ref(null);
+
+const init = async () => {
+  console.log('init')
+
+  let servicesRes  = await fetch('https://goyeneche.linox.net.pe/api/mision-vision');
+  let servicesData = await servicesRes.json();
+  items.value = servicesData;
+  mission.value = items.value.mission;
+  vision.value = items.value.vision;
+  console.log(items.value);
+}
+
+init();
+</script>
+
