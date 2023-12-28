@@ -13,8 +13,8 @@
       <h1 class="text-5xl mb-3 text-primary">Informes y publicaciones</h1>
 
       <ul class="inline-flex gap-4">
-        <li>Inicios</li>
-        <li>Nostros</li>
+        <li>Inicio</li>
+        <li>Informes y publicaciones</li>
       </ul>
     </div>
   </section>

@@ -17,8 +17,8 @@
       </h1>
 
       <ul class="inline-flex gap-4">
-        <li>Inicios</li>
-        <li>Nostros</li>
+        <li>Inicio</li>
+        <li>Nosotros</li>
       </ul>
     </div>
   </section>

@@ -14,7 +14,7 @@
 
       <ul class="inline-flex gap-4">
         <li>Inicio</li>
-        <li>Información y publicaciones</li>
+        <li>Informes y publicaciones</li>
       </ul>
     </div>
   </section>

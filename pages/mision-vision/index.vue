@@ -15,14 +15,14 @@
       <h1 class="text-5xl mb-3 text-primary">Misión y visión</h1>
 
       <ul class="inline-flex gap-4">
-        <li>Inicios</li>
-        <li>Nostros</li>
+        <li>Inicio</li>
+        <li>Nosotros</li>
       </ul>
     </div>
   </section>
 
   <section class="relative items-center w-full py-12 lg:py-32">
-    <div
+    <!-- <div
       class="absolute z-10  left-0 top-0 w-full overflow-hidden flex justify-center"
     >
       <img
@@ -30,7 +30,7 @@
         src="/assets/images/about_us/hg-img-1.jpg"
         alt=""
       />
-    </div>
+    </div> -->
 
     <div class="container relative z-10">
       <div class="grid grid-cols-2 gap-10">

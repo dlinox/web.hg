@@ -7,19 +7,19 @@
 
       <div class="grid grid-cols-3 gap-3">
         <img
-          class="my-auto"
+          class="my-auto hover:shadow-md hover:p-2 transition-all duration-300 ease-in-out"
           width="130px"
           src="/assets/images/icons/mesa_trans.png"
           alt=""
         />
         <img
-          class="my-auto"
+          class="my-auto hover:shadow-md hover:p-2 transition-all duration-300 ease-in-out"
           width="120px"
           src="/assets/images/icons/trasn_trans.png"
           alt=""
         />
         <img
-          class="my-auto"
+          class="my-auto hover:shadow-md   hover:p-2 transition-all duration-300 ease-in-out"
           width="140px"
           src="/assets/images/icons/libro_trans.png"
           alt=""

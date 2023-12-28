@@ -11,6 +11,7 @@
         <img
           :src="`${image.image_url}`"
           :alt="image.title"
+          
           :class="{ active: currentIndex === index }"
         />
       </div>
@@ -131,6 +132,7 @@ const handleSlideChange = (e) => {
 }
 
 .image-container {
+  width: 100%;
   overflow: hidden;
   img {
     width: 100%;
