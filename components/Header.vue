@@ -47,10 +47,9 @@
               class="h-full flex items-center px-3 text-white"
               :to="item.path"
             >
+              <i :class="item.icon"></i>
 
-            <i :class="item.icon"></i>
-
-            <span class="ml-1">
+              <span class="ml-1">
                 {{ item.name }}
               </span>
             </nuxt-link>
@@ -99,7 +98,6 @@ const menu = [
     name: "Inicio",
     path: "/",
     icon: "fa-solid fa-home",
-
   },
   {
     name: "Nosotros",
@@ -180,16 +178,28 @@ const menu = [
       },
     ],
   },
+  {
+    name: "Informes y publicaciones",
+    path: "#",
+    icon: "fa-solid fa-file-alt",
+    group: [
+      {
+        name: "Convocatorias",
+        path: "/convocatorias",
+      },
+      {
+        name: "Publicaciones",
+        path: "/publicaciones",
+      },
+    ],
+  },
 
   {
     name: "Contactanos",
     path: "#",
     icon: "fa-solid fa-phone",
     group: [
-      {
-        name: "Informes y publicaciones",
-        path: "/informes-y-publicaciones",
-      },
+    
       {
         name: "Correo institucional",
         path: "#",

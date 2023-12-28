@@ -37,9 +37,9 @@
         </div>
 
         <div class="px-5 py-2">
-          <a href="/informes-y-publicaciones"
+          <a href="/convocatorias"
            class="text-sm text-gray-500 hover:text-blue-600">
-            Publicaciones
+            Convocatorias
           </a>
         </div>
       </nav>
