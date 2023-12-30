@@ -46,7 +46,7 @@
                 {{ item.name }}
               </div>
               <div class="text-sm font-medium text-slate-400">
-                <!-- {{ item.author.area.name }} -->
+                {{ item.author?.area.name }}
               </div>
             </div>
             <div

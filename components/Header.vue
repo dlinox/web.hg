@@ -2,7 +2,10 @@
   <header class="w-full">
     <div class="container mx-auto items-center flex justify-between">
       <div class="p-1 h-32">
-        <img src="~/assets/logo.png" class="h-28 py-2" />
+        <NuxtLink to="/">
+          
+          <img src="~/assets/logo.png" class="h-28 py-2" />
+        </NuxtLink>
       </div>
 
       <div class="grid grid-cols-3 gap-3">
@@ -55,7 +58,7 @@
             </nuxt-link>
 
             <ul
-              class="group-hover:block hidden absolute -bottom-100 left-0 bg-gray-200 transition-all duration-300 ease-in-out transform group-hover:translate-y-0 translate-y-5 group-hover:z-40 z-0"
+              class="group-hover:block hidden absolute -bottom-100 left-0 bg-gray-50 transition-all duration-300 ease-in-out transform group-hover:translate-y-0 translate-y-5 group-hover:z-40 z-0"
             >
               <li
                 v-for="(subItem, index) in item.group"
