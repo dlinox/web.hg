@@ -72,91 +72,19 @@
           </div>
         </div>
 
-        <!-- pagination-->
         <div class="col-span-2">
           <div class="flex justify-center">
             <div class="flex rounded-md mt-8">
-              <a
-                href="#"
-                class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                <span class="sr-only">Previous</span>
-                <!-- Heroicon name: solid/chevron-left -->
-                <svg
-                  class="h-5 w-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.707 3.293a1 1 0 010 1.414L7.414
-                    9H17a1 1 0 110 2H7.414l3.293 3.293a1 1 0
-                    01-1.414 1.414l-5-5a1 1 0 010-1.414l5-5a1
-                    1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </a>
-              <a
-                href="#"
+              <button
+                v-for="(link, index) in links"
+                :key="index"
                 class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                1
-              </a>
-              <a
-                href="#"
-                class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                2
-              </a>
-              <a
-                href="#"
-                class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                3
-              </a>
-              <span
-                class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700"
-              >
-                ...
-              </span>
-              <a
-                href="#"
-                class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                8
-              </a>
-              <a
-                href="#"
-                class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                9
-              </a>
-              <a
-                href="#"
-                class="relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                <span class="sr-only">Next</span>
-                <!-- Heroicon name: solid/chevron-right -->
-                <svg
-                  class="h-5 w-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M9.293 16.707a1 1 0
-                    010-1.414L12.586 11H3a1 1 0 010-2h9.586l-3.293
-                    -3.293a1 1 0 011.414-1.414l5 5a1 1 0
-                    010 1.414l-5 5a1 1 0 01-1.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </a>
+                :class="{
+                  'bg-primary text-primary': link.active,
+                }"
+                v-html="link.label"
+                @click="link.url ? getItems(link.url) : null"
+              ></button>
             </div>
           </div>
         </div>
@@ -170,12 +98,21 @@ import { ref } from "vue";
 
 const items = ref([]);
 
-const init = async () => {
-  console.log("init");
+const links = ref([]);
 
-  let servicesRes = await fetch("https://goyeneche.linox.net.pe/api/eventos");
+const url = "https://goyeneche.linox.net.pe/api/eventos";
+
+const getItems = async (url) => {
+  let servicesRes = await fetch(url);
   let servicesData = await servicesRes.json();
   items.value = servicesData.data;
+
+  links.value = servicesData.links;
+};
+
+const init = async () => {
+  console.log("init");
+  await getItems(url);
 };
 
 init();
