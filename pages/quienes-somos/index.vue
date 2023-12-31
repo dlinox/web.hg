@@ -34,7 +34,7 @@
             <ECG class="-mt-4 z-0 relative" width="250px" />
           </div>
 
-          <div v-html="about_us">
+          <div  class="text-justify" v-html="about_us">
 
             
 

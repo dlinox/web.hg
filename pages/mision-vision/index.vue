@@ -39,7 +39,7 @@
             <ECG class="-mt-4 z-0 relative" width="100px" />
           </div>
 
-          <div v-html="mission"></div>
+          <div class="text-justify" v-html="mission"></div>
         </div>
 
         <div class="col-span-2 md:col-span-1 shadow-xl p-5 rounded-lg bg-white/60 backdrop-blur-3xl">
@@ -48,7 +48,7 @@
             <ECG class="-mt-4 z-0 relative" width="100px" />
           </div>
 
-          <div v-html="vision"></div>
+          <div class="text-justify" v-html="vision"></div>
         </div>
       </div>
     </div>

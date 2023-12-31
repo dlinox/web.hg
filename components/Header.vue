@@ -9,10 +9,11 @@
 
       <div class="grid grid-cols-3 gap-3">
         <img
-          class="my-auto hover:shadow-md hover:p-2 transition-all duration-300 ease-in-out"
+          class="my-auto hover:shadow-md hover:p-2 transition-all duration-300 ease-in-out cursor-pointer"
           width="130px"
           src="/assets/images/icons/mesa_trans.png"
           alt=""
+          @click="modalContact = !modalContact"
         />
         <img
           class="my-auto hover:shadow-md hover:p-2 transition-all duration-300 ease-in-out"
@@ -46,14 +47,19 @@
             }"
           >
             <nuxt-link
-              class="h-full flex items-center px-3 text-white"
+              class="h-full flex items-center px-3 text-white text-sm"
               :to="item.path"
             >
-              <i :class="item.icon"></i>
+              <i :class="item.icon" class="text-xs"></i>
 
               <span class="ml-1">
                 {{ item.name }}
               </span>
+
+              <i
+                v-if="item.group"
+                class="ml-1 fa-solid fa-chevron-down text-xs"
+              ></i>
             </nuxt-link>
 
             <ul
@@ -67,7 +73,17 @@
                   'bg-gray-100 text-primary': $route.path === subItem.path,
                 }"
               >
+                <template v-if="subItem.name == 'Correo institucional'">
+                  <button
+                    class="h-full flex text-start items-center px-2 py-3 text-gray-900 hover:text-primary"
+                    @click="modalContact = !modalContact"
+                  >
+                    <span class="ml-3"> {{ subItem.name }} </span>
+                  </button>
+                </template>
+
                 <nuxt-link
+                  v-else
                   :to="subItem.path"
                   class="h-full flex items-center px-5 py-3 text-gray-900 hover:text-primary"
                   :class="{
@@ -126,9 +142,17 @@
                 :key="index"
                 class="text-gray-100 text-sm px-3 py-2"
               >
-                <nuxt-link :to="subItem.path">
-                  <span class="ml-3"> {{ subItem.name }} </span>
-                </nuxt-link>
+                <template
+                  v-if="subItem.name == 'Correo institucional'"
+                  @click="modalContact = !modalContact"
+                >
+                  <span class="ml-3"> - {{ subItem.name }} </span>
+                </template>
+                <template v-else>
+                  <nuxt-link :to="subItem.path">
+                    <span class="ml-3"> {{ subItem.name }} </span>
+                  </nuxt-link>
+                </template>
               </li>
             </ul>
           </li>
@@ -141,7 +165,8 @@
             class="bg-white rounded-lg py-2 w-full mx-auto hover:shadow-md hover:scale-95 transition-all duration-300 ease-in-out"
           >
             <img
-              class="mx-auto"
+              @click="modalContact = !modalContact"
+              class="mx-auto cursor-pointer"
               width="130px"
               src="/assets/images/icons/mesa_trans.png"
               alt=""
@@ -172,6 +197,69 @@
       </div>
     </div>
   </header>
+
+  <div
+    v-if="modalContact"
+    class="fixed top-0 left-0 w-full h-full z-40 bg-black/30"
+    @click="modalContact = false"
+  ></div>
+
+  <div
+    v-if="modalContact"
+    class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex"
+  >
+    <div class="relative w-auto my-6 mx-auto max-w-6xl">
+      <!--content-->
+      <div
+        class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
+      >
+        <!--header-->
+        <div
+          class="flex items-start justify-between py-2 px-3 border-b border-solid border-blueGray-200 rounded-t"
+        >
+          <h3 class="text-2xl font-semibold">Mesa de partes</h3>
+          <button
+            class="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+            @click="modalContact = !modalContact"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <!--body-->
+        <div class="relative flex-auto w-[350px]">
+          <div class="p-3">
+            <p class="mb-2">
+              Estimado(a) ciudadano(a), con el fin de llevar un control
+              eficiente de los plazos, la recepcion de documentos será:
+            </p>
+            <p class="mb-2">
+              De lunes a jueves de 8:15a.m a 3:30 p.m, Viernes de 7:00a.m a
+              3:30p.m.
+            </p>
+            <p class="mb-2">
+              Pasado esos horarios, los sábados, domingos, feriados o cualquier
+              otro día no laborable, se registrarán a partir del día hábil
+              siguiente.
+            </p>
+
+            <div class="text-center mb-2 text-primary font-medium">
+              <i class="fa-solid fa-envelope"></i>
+              <span class="text-lg"> mesadepartes@hg.gob.pe</span>
+            </div>
+          </div>
+        </div>
+        <!--footer-->
+        <!-- <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+            <button class="text-red-500 bg-transparent border border-solid border-red-500 hover:bg-red-500 hover:text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
+              Close
+            </button>
+            <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
+              Save Changes
+            </button>
+          </div> -->
+      </div>
+    </div>
+  </div>
 </template>
 <script setup>
 import { useWindowScroll } from "@vueuse/core";
@@ -183,6 +271,8 @@ const target = ref(null);
 const targetIsVisible = useElementVisibility(target);
 
 const openMenu = ref(false);
+
+const modalContact = ref(false);
 
 const menu = [
   {
