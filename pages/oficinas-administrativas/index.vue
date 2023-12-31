@@ -26,7 +26,7 @@
   <section class="relative items-center w-full py-12 lg:py-32">
     <div class="container">
       <div class="grid grid-cols-2 gap-5">
-        <div v-for="item in items" :key="item.id" class=" rounded-lg overflow-hidden shadow-lg">
+        <div v-for="item in items" :key="item.id" class=" rounded-lg overflow-hidden shadow-lg col-span-2 md:col-span-1"> 
           <img
             class="w-full"
             :src="item.image_url"

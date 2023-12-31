@@ -24,10 +24,11 @@
   <section class="relative items-center w-full py-12 lg:py-32">
     <div class="container">
       <div class="grid grid-cols-2 gap-5">
-        <div>
+        <div class="col-span-2 md:col-span-1">
           <img src="/assets/images/about_us/hg-img-1.jpg" alt="" />
         </div>
-        <div>
+        <div class="col-span-2 md:col-span-1">
+        
           <div class="container mb-6">
             <h3 class="text-3xl font-bold z-10 relative">Hospital Goyeneche</h3>
             <ECG class="-mt-4 z-0 relative" width="250px" />

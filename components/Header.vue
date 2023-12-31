@@ -3,7 +3,6 @@
     <div class="container mx-auto items-center flex justify-between">
       <div class="p-1 h-32">
         <NuxtLink to="/">
-          
           <img src="~/assets/logo.png" class="h-28 py-2" />
         </NuxtLink>
       </div>
@@ -22,7 +21,7 @@
           alt=""
         />
         <img
-          class="my-auto hover:shadow-md   hover:p-2 transition-all duration-300 ease-in-out"
+          class="my-auto hover:shadow-md hover:p-2 transition-all duration-300 ease-in-out"
           width="140px"
           src="/assets/images/icons/libro_trans.png"
           alt=""
@@ -35,8 +34,8 @@
       ref="target"
       :class="{ 'fixed top-0 left-0 w-full z-50': y > 128 }"
     >
-      <nav class="container h-full">
-        <ul class="inline-flex h-full">
+      <nav class="container h-full flex justify-center">
+        <ul class="h-full lg:inline-flex hidden">
           <li
             v-for="(item, index) in menu"
             :key="index"
@@ -83,7 +82,94 @@
             </ul>
           </li>
         </ul>
+
+        <div class="lg:hidden flex items-center">
+          <button
+            class="focus:outline-none text-white hover:text-gray-200 transition-all duration-300 ease-in-out"
+            @click="openMenu = !openMenu"
+          >
+            <i class="fa-solid fa-bars fa-2x"></i>
+          </button>
+        </div>
       </nav>
+    </div>
+
+    <div>
+      <div
+        class="fixed top-0 left-0 w-full h-screen bg-black/50 z-40"
+        v-if="openMenu"
+        @click="openMenu = false"
+      ></div>
+    </div>
+
+    <div
+      v-if="openMenu"
+      class="fixed top-0 left-0 h-screen w-[320px] bg-primary z-40 flex flex-wrap justify-between transition-all duration-300 ease-in-out"
+    >
+      <nav class="w-full">
+        <ul class="p-2 w-full">
+          <li v-for="item in menu" class="group w-full">
+            <nuxt-link
+              :to="item.path"
+              class="text-gray-100 text-sm px-3 py-2 group-hover:bg-black/5 w-full flex items-center"
+            >
+              <i :class="item.icon"></i>
+              <span class="ml-3"> {{ item.name }} </span>
+            </nuxt-link>
+
+            <ul
+              v-if="item.group"
+              class="ml-5 h-0 bg-white/30 group-hover:h-auto overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <li
+                v-for="(subItem, index) in item.group"
+                :key="index"
+                class="text-gray-100 text-sm px-3 py-2"
+              >
+                <nuxt-link :to="subItem.path">
+                  <span class="ml-3"> {{ subItem.name }} </span>
+                </nuxt-link>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="w-full flex items-end">
+        <div class="grid grid-cols-1 gap-3 w-full px-3 pb-3">
+          <div
+            class="bg-white rounded-lg py-2 w-full mx-auto hover:shadow-md hover:scale-95 transition-all duration-300 ease-in-out"
+          >
+            <img
+              class="mx-auto"
+              width="130px"
+              src="/assets/images/icons/mesa_trans.png"
+              alt=""
+            />
+          </div>
+
+          <div
+            class="bg-white rounded-lg py-2 w-full mx-auto hover:shadow-md hover:scale-95 transition-all duration-300 ease-in-out"
+          >
+            <img
+              class="mx-auto"
+              width="120px"
+              src="/assets/images/icons/trasn_trans.png"
+              alt=""
+            />
+          </div>
+          <div
+            class="bg-white rounded-lg py-2 w-full mx-auto hover:scale-95 hover:p-2 transition-all duration-300 ease-in-out"
+          >
+            <img
+              class="mx-auto"
+              width="140px"
+              src="/assets/images/icons/libro_trans.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 </template>
@@ -95,6 +181,8 @@ const { x, y } = useWindowScroll();
 
 const target = ref(null);
 const targetIsVisible = useElementVisibility(target);
+
+const openMenu = ref(false);
 
 const menu = [
   {
@@ -202,7 +290,6 @@ const menu = [
     path: "#",
     icon: "fa-solid fa-phone",
     group: [
-    
       {
         name: "Correo institucional",
         path: "#",
