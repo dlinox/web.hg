@@ -143,7 +143,7 @@ const init = async () => {
 
   let servicesRes  = await fetch('https://goyeneche.linox.net.pe/api/especialidades-medicas');
   let servicesData = await servicesRes.json();
-  servicesItems.value = servicesData;
+  servicesItems.value = servicesData.data;
   console.log(servicesItems.value);
 }
 

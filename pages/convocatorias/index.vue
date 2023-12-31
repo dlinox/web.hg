@@ -182,7 +182,7 @@ const init = async () => {
     "https://goyeneche.linox.net.pe/api/convocatorias"
   );
   let servicesData = await servicesRes.json();
-  items.value = servicesData;
+  items.value = servicesData.data;
   console.log(items.value);
 };
 

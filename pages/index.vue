@@ -327,27 +327,26 @@ const toggleModal = () => {
 };
 
 const init = async () => {
-  let newsRes = await fetch("https://goyeneche.linox.net.pe/api/news");
+  let newsRes = await fetch("https://goyeneche.linox.net.pe/api/news?limit=4");
   let newsData = await newsRes.json();
-  newsItems.value = newsData;
-  console.log(newsItems.value);
+  newsItems.value = newsData.data;
   // filtart si is_featured es true
-  imgModal.value = newsData.filter((item) => item.is_featured === true);
+  imgModal.value = newsData.data.filter((item) => item.is_featured === true);
 
   if (imgModal.value.length > 0) {
     showModal.value = true;
   }
 
   let servicesRes = await fetch(
-    "https://goyeneche.linox.net.pe/api/especialidades-medicas"
+    "https://goyeneche.linox.net.pe/api/especialidades-medicas?limit=4"
   );
   let servicesData = await servicesRes.json();
-  servicesItems.value = servicesData;
-  console.log(servicesItems.value);
+  servicesItems.value = servicesData.data;
+  
 
-  let doctorsRes = await fetch("https://goyeneche.linox.net.pe/api/doctors");
+  let doctorsRes = await fetch("https://goyeneche.linox.net.pe/api/doctors?limit=4");
   let doctorsData = await doctorsRes.json();
-  doctorsItems.value = doctorsData;
+  doctorsItems.value = doctorsData.data;
   console.log(doctorsItems.value);
 };
 

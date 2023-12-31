@@ -141,7 +141,7 @@ const init = async () => {
     "https://goyeneche.linox.net.pe/api/circuitos-de-atencion"
   );
   let servicesData = await servicesRes.json();
-  items.value = servicesData;
+  items.value = servicesData.data;
 
 };
 

@@ -175,7 +175,7 @@ const init = async () => {
 
   let servicesRes = await fetch("https://goyeneche.linox.net.pe/api/eventos");
   let servicesData = await servicesRes.json();
-  items.value = servicesData;
+  items.value = servicesData.data;
 };
 
 init();
